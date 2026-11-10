@@ -2,6 +2,7 @@ export type Service = {
   id: number;
   title: string;
   image: string;
+  cardDirection: string;
   background: string;
   content: {
     heading: string;
@@ -13,6 +14,7 @@ export const services: Service[] = [
   {
     id: 1,
     title: "PAID TRAFFIC",
+    cardDirection: "left",
     image: "/servicesUser/1.png",
     background: "bg-eerie-black",
     content: [
@@ -30,7 +32,8 @@ export const services: Service[] = [
     id: 2,
     title: "GRAPHIC DESIGN & BRANDING",
     image: "/servicesUser/2.png",
-    background: "bg-white",
+    cardDirection: "right",
+    background: "bg-alabaster",
     content: [
       {
         heading: "Visual Excellence",
@@ -47,6 +50,7 @@ export const services: Service[] = [
     title: "CONTENT MARKETING STRATEGY",
     image: "/servicesUser/3.png",
     background: "bg-eerie-black",
+    cardDirection: "left",
     content: [
       {
         heading: "Strategic Storytelling",

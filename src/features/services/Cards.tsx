@@ -5,8 +5,14 @@ const PaidTraffic = () => {
   return (
     <>
       {services.map((service, index) => (
-        <div key={index} className="bg-eerie-black mx-10 mt-10 flex flex-col items-center justify-between gap-25 p-10 sm:mx-5 sm:gap-25 sm:p-5 xl:flex-row">
-          <img className="w-full rounded-lg object-cover xl:w-[45vw]" src={service.image} alt="User Using Laptop" />
+        <div
+          style={{
+            color: service.background === "bg-alabaster" ? "black" : "white",
+          }}
+          key={index}
+          className={`${service.background} mx-10 mt-10 flex ${service.cardDirection === "left" ? "flex-col" : "flex-col-reverse"} items-center justify-between gap-25 rounded-lg p-10 sm:mx-5 sm:gap-25 sm:p-5 xl:flex-row`}
+        >
+          {service.cardDirection === "left" && <img className="w-full rounded-lg object-cover xl:w-[45vw]" src={service.image} alt="User Using Laptop" />}
           <div className="flex min-w-0 flex-1 flex-col gap-7 xl:w-[35vw] xl:gap-5">
             <Heading headingType="medium">{service.title}</Heading>
 
@@ -22,6 +28,7 @@ const PaidTraffic = () => {
               <Button name="Get Started" />
             </div>
           </div>
+          {service.cardDirection === "right" && <img className="w-full rounded-lg object-cover xl:w-[45vw]" src={service.image} alt="User Using Laptop" />}
         </div>
       ))}
     </>
