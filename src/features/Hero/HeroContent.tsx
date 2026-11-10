@@ -1,13 +1,15 @@
 import Button from "../../shared/ui/Button";
+import Heading from "../../shared/ui/Heading";
+import SectionTitle from "../../shared/ui/SectionTitle";
 
 const HeroContent = () => {
   const images: string[] = ["../../../public/userImages/1.png", "../../../public/userImages/2.png", "../../../public/userImages/3.png", "../../../public/userImages/4.png", "../../../public/userImages/5.png"];
   return (
     <div className="flex flex-col gap-4 px-4">
       <div>
-        <span className="text-inch-worm bg-inch-worm/20 cursor-pointer rounded-3xl px-4 py-1 font-medium uppercase">for agency owners</span>
+        <SectionTitle>for agency owners</SectionTitle>
       </div>
-      <h1 className="text-9xl font-bold uppercase">Build a powerful agency site with Framer</h1>
+      <Heading headingType="extraLarge">Build a powerful agency site with Framer</Heading>
       <p>We are committed to pushing the boundaries of what's possible.</p>
       <div className="flex items-center justify-start gap-2">
         <Button name="Get Started" />

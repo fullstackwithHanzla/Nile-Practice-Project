@@ -11,7 +11,7 @@ const logos: string[] = ["Boost Conversion", "Lightning Fast", " Framer Experts"
 const HeroLogos = () => {
   return (
     <div className="py-4">
-      <Marquee speed={30} pauseOnHover={true}>
+      <Marquee speed={50} pauseOnHover={true}>
         {logos.map((logo) => (
           <div key={logo} className="w-[20vw] font-semibold tracking-wide">
             {logo}
