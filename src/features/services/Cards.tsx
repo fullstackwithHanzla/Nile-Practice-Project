@@ -1,10 +1,29 @@
 import Button from "../../shared/ui/Button";
 import Heading from "../../shared/ui/Heading";
-import { services } from "./servicesData";
-const PaidTraffic = () => {
+import SectionTitle from "../../shared/ui/SectionTitle";
+
+type ContentItem = {
+  heading: string;
+  description: string;
+};
+
+type ServiceItem = {
+  id: number;
+  title: string;
+  image: string;
+  cardDirection: string;
+  background: string;
+  content: ContentItem[];
+};
+
+type CardsProp = {
+  data: ServiceItem[];
+  caseStudy: boolean;
+};
+const Cards = ({ data, caseStudy }: CardsProp) => {
   return (
     <>
-      {services.map((service, index) => (
+      {data?.map((service, index) => (
         <div
           style={{
             color: service.background === "bg-alabaster" ? "black" : "white",
@@ -14,6 +33,11 @@ const PaidTraffic = () => {
         >
           {service.cardDirection === "left" && <img className="w-full rounded-lg object-cover xl:w-[45vw]" src={service.image} alt="User Using Laptop" />}
           <div className="flex min-w-0 flex-1 flex-col gap-7 xl:w-[35vw] xl:gap-5">
+            {caseStudy && (
+              <div className="flex items-center">
+                <SectionTitle>Case Study</SectionTitle>
+              </div>
+            )}
             <Heading headingType="medium">{service.title}</Heading>
 
             {service.content.map((item, index) => (
@@ -35,4 +59,4 @@ const PaidTraffic = () => {
   );
 };
 
-export default PaidTraffic;
+export default Cards;

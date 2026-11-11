@@ -1,6 +1,7 @@
 import Heading from "../../shared/ui/Heading";
 import SectionTitle from "../../shared/ui/SectionTitle";
 import Cards from "./Cards";
+import { services } from "./servicesData";
 const Services = () => {
   return (
     <>
@@ -12,7 +13,7 @@ const Services = () => {
           grow your business
         </Heading>
       </div>
-      <Cards />
+      <Cards data={services} />
     </>
   );
 };
