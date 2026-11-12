@@ -11,6 +11,12 @@ body{
     color: var(--color-alabaster);
 }
 
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
 @theme{
     --color-inch-worm : #b7e927;
     --color-eerie-black : #141414;
