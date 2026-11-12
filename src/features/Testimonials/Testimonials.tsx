@@ -13,7 +13,7 @@ const Testimonials = () => {
       <Heading headingType="large">
         What our clients say <br /> about us
       </Heading>
-      <div className="flex w-full justify-between gap-10 p-10">
+      <div className="flex w-full justify-between  flex-wrap lg:flex-nowrap gap-10 p-10">
         {testimonialsData.map((testimonial, index) => (
           <div key={index} className="grid space-y-5 text-start">
             <div className="flex">

@@ -11,7 +11,7 @@ const Heading = ({ headingType = "small", children = "Heading" }: headingContent
     large: "text-6xl",
     extraLarge: "text-9xl",
   };
-  return <h1 className={`${variants[headingType]} font-bold ${headingType === "small" ? "" : "uppercase"}`}>{children}</h1>;
+  return <h1 className={`${headingType == "extraLarge" ? `text-7xl xl:text-9xl` : variants[headingType]} font-bold ${headingType === "small" ? "" : "uppercase"}`}>{children}</h1>;
 };
 
 export default Heading;

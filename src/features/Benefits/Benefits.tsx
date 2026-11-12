@@ -6,12 +6,12 @@ const Benefits = () => {
     <div className="flex flex-col items-center gap-5 py-15">
       <SectionTitle>Benefits</SectionTitle>
       <Heading headingType="large">Unlock your success</Heading>
-      <div className="my-15 flex items-center justify-between gap-5">
+      <div className="my-15 grid gap-y-10 grid-cols-1 xl:grid-cols-3 xl:gap-5">
         {benefitsData.map((benefit, index) => (
-          <div className="grid w-full grow grid-cols-1 place-items-center gap-5" key={index}>
+          <div className="grid w-full grow grid-cols-1 grid-rows-subgrid row-span-3 place-items-center  text-center gap-3" key={index}>
             {<benefit.icon className="h-10 w-10" />}
             <Heading headingType="small">{benefit.heading}</Heading>
-            <p className="w-full text-center text-lg lg:w-[80%]">{benefit.description}</p>
+            <p className="w-full sm:px-5 md:w-[60%] text-center text-md xl:text-lg xl:w-[80%]">{benefit.description}</p>
           </div>
         ))}
       </div>

@@ -2,11 +2,12 @@ import { FaArrowRight } from "react-icons/fa";
 
 type buttonProps = {
   name: string;
+  grow?: boolean;
 };
 
-const Button = ({ name }: buttonProps) => {
+const Button = ({ name, grow }: buttonProps) => {
   return (
-    <button className="border-cod-gray/20 font-medium text-cod-gray bg-inch-worm flex items-center justify-between rounded-3xl py-2 px-6 gap-2">
+    <button className={`${grow ? "min-w-full grow items-center justify-center rounded-4xl py-4 text-center" : "items-center justify-between"}border-cod-gray/20 text-cod-gray bg-inch-worm flex gap-2 rounded-3xl px-6 py-2 font-medium`}>
       {name}
       <span>|</span> <FaArrowRight />
     </button>

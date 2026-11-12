@@ -5,7 +5,7 @@ import SectionTitle from "../../shared/ui/SectionTitle";
 const HeroContent = () => {
   const images: string[] = ["../../../public/userImages/1.png", "../../../public/userImages/2.png", "../../../public/userImages/3.png", "../../../public/userImages/4.png", "../../../public/userImages/5.png"];
   return (
-    <div className="flex flex-col gap-4 px-4">
+    <div className="flex flex-col gap-4 py-5 px-4">
       <div>
         <SectionTitle>for agency owners</SectionTitle>
       </div>

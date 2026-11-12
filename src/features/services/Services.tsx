@@ -13,7 +13,7 @@ const Services = () => {
           grow your business
         </Heading>
       </div>
-      <Cards data={services} />
+      <Cards caseStudy={false} data={services} />
     </>
   );
 };
