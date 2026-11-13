@@ -1,6 +1,10 @@
+import { useGSAP } from "@gsap/react";
 import Button from "../../shared/ui/Button";
 import Heading from "../../shared/ui/Heading";
 import SectionTitle from "../../shared/ui/SectionTitle";
+import { servicesAnimation } from "./Animations/ServicesAnimation";
+import gsap from "gsap";
+import { useRef } from "react";
 
 type ContentItem = {
   heading: string;
@@ -21,15 +25,21 @@ type CardsProp = {
   caseStudy: boolean;
 };
 const Cards = ({ data, caseStudy }: CardsProp) => {
+  const container = useRef<HTMLDivElement | null >(null)
+  gsap.registerPlugin(useGSAP)
+  useGSAP(()=> {
+    servicesAnimation()
+  },{scope : container})
   return (
     <>
       {data?.map((service, index) => (
         <div
+        ref={container}
           style={{
             color: service.background === "bg-alabaster" ? "black" : "white",
           }}
           key={index}
-          className={`${service.background} mx-10 mt-10 flex ${service.cardDirection === "left" ? "flex-col" : "flex-col-reverse"} items-center justify-between gap-25 rounded-lg p-10 sm:mx-5 sm:gap-25 sm:p-5 xl:flex-row`}
+          className={`${service.background} cards mx-10 mt-10 flex ${service.cardDirection === "left" ? "flex-col" : "flex-col-reverse"} items-center justify-between gap-25 rounded-lg p-10 sm:mx-5 sm:gap-25 sm:p-5 xl:flex-row`}
         >
           {service.cardDirection === "left" && <img className="w-full rounded-lg object-cover xl:w-[45vw]" src={service.image} alt="User Using Laptop" />}
           <div className="flex min-w-0 flex-1 flex-col gap-7 xl:w-[35vw] xl:gap-5">

@@ -24,7 +24,7 @@ const HeroContent = () => {
       <div className="hero-title">
         <SectionTitle>for agency owners</SectionTitle>
       </div>
-      <Heading headingType="extraLarge">Build a powerful agency site with Framer</Heading>
+      <Heading className="hero-heading" headingType="extraLarge">Build a powerful agency site with Framer</Heading>
       <p className="hero-paragraph">We are committed to pushing the boundaries of what's possible.</p>
       <div className="flex items-center justify-start gap-2">
         <Button name="Get Started" />
