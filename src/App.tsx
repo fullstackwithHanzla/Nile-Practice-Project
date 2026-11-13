@@ -9,12 +9,27 @@ const App = () => {
   return (
     <div className="bg-cod-gray">
       <HeroSection />
-      <Services />
+
+      <div id="services" className="scroll-mt-20">
+        <Services />
+      </div>
+
       <Benefits />
-      <Revolution />
-      <Testimonials />
-      <FaqSection/>
-      <Footer/>
+
+      
+      <div id="case-studies" className="scroll-mt-20">
+        <Revolution />
+      </div>
+
+      <div id="testimonials" className="scroll-mt-20">
+        <Testimonials />
+      </div>
+
+      <div id="faq" className="scroll-mt-20">
+        <FaqSection />
+      </div>
+
+      <Footer />
     </div>
   );
 };

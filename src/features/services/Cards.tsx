@@ -54,7 +54,7 @@ const Cards = ({ data, caseStudy }: CardsProp) => {
               <div key={index} className="space-y-5">
                 <Heading headingType="small">{item.heading}</Heading>
 
-                <p>{item.description}</p>
+                <p className="reveal-paragraph">{item.description}</p>
               </div>
             ))}
 

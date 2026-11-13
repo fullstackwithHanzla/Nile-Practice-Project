@@ -2,11 +2,26 @@ import Heading from "../../shared/ui/Heading";
 import SectionTitle from "../../shared/ui/SectionTitle";
 import { testimonialsData } from "./TestimonialsData";
 import { IoStar } from "react-icons/io5";
-import { FaUserTie } from "react-icons/fa";
+import { PiUserCircleFill } from "react-icons/pi";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import { servicesAnimation } from "../services/Animations/ServicesAnimation";
 
 const Testimonials = () => {
+  gsap.registerPlugin(useGSAP);
+  const container = useRef<HTMLDivElement>(null);
+  useGSAP(
+    () => {
+      servicesAnimation();
+    },
+    { scope: container },
+  );
   return (
-    <div className="flex flex-col items-center gap-10 py-15 text-center">
+    <div
+      ref={container}
+      className="flex flex-col items-center gap-10 py-15 text-center"
+    >
       <div>
         <SectionTitle>Testimonials</SectionTitle>
       </div>
@@ -18,13 +33,19 @@ const Testimonials = () => {
           <div key={index} className="grid space-y-5 text-start">
             <div className="flex">
               {Array.from({ length: testimonial.rating }).map((_, index) => (
-                <IoStar key={index} fill="#FACC15" className="text-yellow-400" />
+                <IoStar
+                  key={index}
+                  fill="#FACC15"
+                  className="text-yellow-400"
+                />
               ))}
             </div>
-            <p className="text-lg">{testimonial.reviewMessage}</p>
-            <div className="flex items-center gap-5">
-              <FaUserTie size={25} />
-              <span>{testimonial.name}</span>
+            <p className="text-lg reveal-paragraph-benefits">
+              {testimonial.reviewMessage}
+            </p>
+            <div className="flex items-center gap-2">
+              <PiUserCircleFill size={25} />
+              <span className="text-xs">{testimonial.name}</span>
             </div>
           </div>
         ))}

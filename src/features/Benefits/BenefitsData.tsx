@@ -23,6 +23,6 @@ export const benefitsData: Benefits[] = [
   {
     icon: GiWaves,
     heading: "Tailored Solutions for Success",
-    description: "Experience unmatched return on investment—strategic marketing for sustained growth and profitability.Personalized strategies, uniquely crafted for your business, ensuring certainty in every marketing endeavor.",
+    description: "Personalized strategies, uniquely crafted for your business, ensuring certainty in every marketing endeavor."
   },
 ];
