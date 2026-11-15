@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 
 type NavlinkProps = {
   isPop?: boolean;
+  active?: boolean;
+  
 };
 
-const NavLinks = ({ isPop = false }: NavlinkProps) => {
+const NavLinks = ({ isPop = false , active = false }: NavlinkProps) => {
   const navLinkItems = [
     { label: "Services", href: "#services" },
     { label: "Case Studies", href: "#case-studies" },
@@ -25,9 +27,12 @@ const NavLinks = ({ isPop = false }: NavlinkProps) => {
             color: "var(--color-inch-worm)",
             transition: { type: "tween", duration: 0.35, ease: "easeOut" },
           }}
-          className="cursor-pointer list-none px-8 text-sm"
+          className={`cursor-pointer ${active ? "block w-full text-center" : "hidden"} lg:block list-none px-8 text-sm`}
         >
-          <a href={item.href} className="block w-full">
+          <a
+            href={item.href}
+            className={`block w-full ${active ? "text-2xl font-semibold" : ""}`}
+          >
             {item.label}
           </a>
         </motion.li>

@@ -1,39 +1,59 @@
-import { useGSAP } from "@gsap/react";
-import Button from "../../shared/ui/Button";
-import Heading from "../../shared/ui/Heading";
-import SectionTitle from "../../shared/ui/SectionTitle";
-import { heroContentAnimation } from "./Animations/HeroContentAnimations";
 import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { motion } from "framer-motion";
 
+import Button from "../../shared/ui/Button";
+import Heading from "../../shared/ui/Heading";
+import SectionTitle from "../../shared/ui/SectionTitle";
+
+import { heroContentAnimation } from "./Animations/HeroContentAnimations";
+
+gsap.registerPlugin(useGSAP);
+
+const images: string[] = [
+  "/userImages/1.png",
+  "/userImages/2.png",
+  "/userImages/3.png",
+  "/userImages/4.png",
+  "/userImages/5.png",
+];
 
 const HeroContent = () => {
+  const container = useRef<HTMLDivElement>(null);
 
-  gsap.registerPlugin(useGSAP)
+  useGSAP(
+    () => {
+      if (!container.current) return;
 
-  const container = useRef<HTMLDivElement | null>(null);
+      return heroContentAnimation(container.current);
+    },
+    { scope: container },
+  );
 
-  useGSAP(()=>{
-    heroContentAnimation()
-  },{scope : container})
-  
-  
-  const images: string[] = ["../../../public/userImages/1.png", "../../../public/userImages/2.png", "../../../public/userImages/3.png", "../../../public/userImages/4.png", "../../../public/userImages/5.png"];
   return (
-    <div ref={container} className="flex flex-col gap-4 py-5 px-4">
+    <div ref={container} className="flex flex-col gap-4 px-4 py-5">
       <div className="hero-title">
         <SectionTitle>for agency owners</SectionTitle>
       </div>
+
       <Heading className="hero-heading" headingType="extraLarge">
         Build a powerful agency site with Framer
       </Heading>
+
       <p className="hero-paragraph">
         We are committed to pushing the boundaries of what's possible.
       </p>
-      <div className="flex items-center justify-start gap-2">
+
+      <div className="flex flex-col items-start justify-start gap-2 sm:flex-row sm:items-center">
         <Button name="Get Started" />
-        <a href="https://www.youtube.com" target="blanked" className="hero-button-2">
+
+        <a
+          href="https://www.youtube.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hero-button-2"
+        >
           <motion.button
             initial={{
               backgroundColor: "rgba(255, 255, 255, 0)",
@@ -57,22 +77,23 @@ const HeroContent = () => {
         </a>
       </div>
 
-      <div className="flex  items-center justify-start gap-3">
-        <div className="flex -space-x-1 hero-images">
-          {images?.map((imgUrl, index) => (
+      <div className="flex items-center justify-start gap-3">
+        <div className="hero-images flex -space-x-1">
+          {images.map((imgUrl, index) => (
             <div
               style={{ zIndex: 6 - index }}
-              className={`border-cod-gray h-7 w-7 overflow-hidden rounded-full border`}
+              className="border-cod-gray h-7 w-7 overflow-hidden rounded-full border"
               key={imgUrl}
             >
               <img
                 src={imgUrl}
                 className="h-full w-full object-cover"
-                alt="userImage"
+                alt="Happy client"
               />
             </div>
           ))}
         </div>
+
         <span className="hero-clients-data">200+ happy clients</span>
       </div>
     </div>

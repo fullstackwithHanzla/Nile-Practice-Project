@@ -13,7 +13,7 @@ const HeroLogos = () => {
     <div className="py-4">
       <Marquee speed={50} pauseOnHover={true} pauseOnClick={false} className="flex gap-5 justify-between text-center">
         {logos.map((logo) => (
-          <div key={logo} className="w-[20vw] text-sm lg:text-lg font-semibold tracking-wide">
+          <div key={logo} className="w-[50vw] md:w-[20vw] text-sm lg:text-lg font-semibold tracking-wide">
             {logo}
           </div>
         ))}

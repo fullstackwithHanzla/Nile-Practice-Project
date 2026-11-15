@@ -1,85 +1,138 @@
-import gsap from "gsap"
-import { SplitText } from "gsap/all";
+import gsap, { SplitText } from "gsap/all";
 
-export const heroContentAnimation = () => {
-    gsap.registerPlugin(SplitText)
-    const t1 = gsap.timeline();
+gsap.registerPlugin(SplitText);
 
-    t1.from(".hero-title",{
-        opacity : 0,
-        y: 10,
-        duration : 0.85,
-        ease : "power3.inOut"
-    })
+export const heroContentAnimation = (container: HTMLElement) => {
+  const splits: SplitText[] = [];
 
-    const split = new SplitText(".hero-heading",{
-        type : "words",
-        mask : "words",
-        autoSplit : true,
-    })
+  const title = container.querySelector(".hero-title");
+  const heading = container.querySelector(".hero-heading");
+  const paragraph = container.querySelector(".hero-paragraph");
+  const button = container.querySelector(".hero-button");
+  const button2 = container.querySelector(".hero-button-2");
+  const images = container.querySelectorAll(".hero-images > *");
+  const clients = container.querySelector(".hero-clients-data");
 
-    t1.from(split.words , {
-        yPercent : 110,
-        opacity : 0,
-        autoAlpha : 0,
-        duration : 1.2,
-        stagger : 0.115,
-        ease : "power3.inOut"
-    },"-=0.4")
+  const tl = gsap.timeline();
 
-    const split2 = new SplitText(".hero-paragraph",{
-        type : "chars",
-        mask : "chars",
-        autoSplit : true,
-    })
+  // Section label
+  if (title) {
+    tl.from(title, {
+      opacity: 0,
+      y: 10,
+      duration: 0.85,
+      ease: "power3.out",
+    });
+  }
 
-    t1.from(split2.chars , {
-        yPercent : 110,
-        opacity : 0,
-        autoAlpha : 0,
-        duration : 1.2,
-        stagger : 0.01,
-        ease : "power3.inOut"
-    },"-=0.85")
+  // Main heading
+  if (heading) {
+    const split = SplitText.create(heading, {
+      type: "words",
+      mask: "words",
+      autoSplit: true,
 
-    t1.from(".hero-button",{
-        xPercent : -110,
-        opacity : 0,
-        duration : 0.45,
-        stagger : 0.2,
-        ease : "sine.inOut"
-    },"-=0.4")
-    t1.from(".hero-button-2",{
-        xPercent : -110,
-        opacity : 0,
-        duration : 0.45,
-        stagger : 0.2,
-        ease : "elastic.inOut"
-    },"<=0.2")
+      onSplit(self) {
+        return gsap.from(self.words, {
+          yPercent: 110,
+          autoAlpha: 0,
+          duration: 1.2,
+          stagger: 0.115,
+          ease: "power3.out",
+        });
+      },
+    });
 
-    t1.from(".hero-images > *",{
-        yPercent : 110,
-        opacity : 0,
-        duration : 0.45,
-        stagger : 0.2,
-        ease : "bounce.inOut"
-    },">")
+    splits.push(split);
+  }
 
-    const split3 = new SplitText(".hero-clients-data" , {
-        type : "chars",
-        mask : "chars",
-        autoSplit : true,
-    })
+  // Paragraph
+  if (paragraph) {
+    const split = SplitText.create(paragraph, {
+      type: "words",
+      mask: "words",
+      autoSplit: true,
 
-    t1.from(split3.chars , {
-        yPercent : 110,
-        opacity : 0,
-        duration : 1.2,
-        stagger : 0.01,
-        ease : "power4.inOut"
-    },"-=0.45")
+      onSplit(self) {
+        return gsap.from(self.words, {
+          yPercent: 110,
+          autoAlpha: 0,
+          duration: 1,
+          stagger: 0.045,
+          ease: "power3.out",
+        });
+      },
+    });
 
+    splits.push(split);
+  }
 
+  // Buttons
+  if (button) {
+    tl.from(
+      button,
+      {
+        xPercent: -110,
+        opacity: 0,
+        duration: 0.45,
+        ease: "power3.out",
+      },
+      "-=0.4",
+    );
+  }
 
-    return t1;
-}
+  if (button2) {
+    tl.from(
+      button2,
+      {
+        xPercent: -110,
+        opacity: 0,
+        duration: 0.45,
+        ease: "power3.out",
+      },
+      "<0.2",
+    );
+  }
+
+  // Client images
+  if (images.length) {
+    tl.from(
+      images,
+      {
+        yPercent: 110,
+        opacity: 0,
+        duration: 0.65,
+        stagger: 0.1,
+        ease: "power3.out",
+      },
+      ">",
+    );
+  }
+
+  // Client statistics
+  if (clients) {
+    const split = SplitText.create(clients, {
+      type: "words",
+      mask: "words",
+      autoSplit: true,
+
+      onSplit(self) {
+        return gsap.from(self.words, {
+          yPercent: 110,
+          autoAlpha: 0,
+          duration: 0.9,
+          stagger: 0.08,
+          ease: "power4.out",
+        });
+      },
+    });
+
+    splits.push(split);
+  }
+
+  // Cleanup SplitText instances
+  return () => {
+    splits.forEach((split) => split.revert());
+    tl.kill();
+  };
+};
